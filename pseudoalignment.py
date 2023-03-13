@@ -9,6 +9,7 @@ TRANSCRIPT_READ_FILE = "reads.fasta"
 
 isoform_file = open(ISOFORM_READ_FILE, 'r')
 
+# dictionary indexed by a k_mer pointing back to a set of isoforms it could have come from
 back_index = dict()
 
 for isoform in SeqIO.parse(isoform_file, "fasta"):
@@ -26,7 +27,7 @@ for isoform in SeqIO.parse(isoform_file, "fasta"):
 isoform_file.close()
 
 # create a function such that given the reverse maps, we can find 
-# the equivalence class for the 
+# the equivalence class for the transcript
 def get_equivalence_class(isoform_dict, transcript) -> set | None:
     transcript_str = str(transcript) 
     transcript_len = len(transcript_str)
